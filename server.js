@@ -30,10 +30,11 @@ app.get('/details/:id', function(req,res){
 })
 
 app.post('/details',function(req,res){
-	console.log(req.body);
+	console.log("this is to save: ",req.body);
 	
 	db.detailsCollection.insert(req.body,function(err,docs){
 		res.json(docs);
+		console.log("docs: ",docs)
 	});
 	
 });

@@ -1,4 +1,4 @@
-var myApp = angular.module('myApp', []);
+//var myApp = angular.module('myApp',[]);
 /*myApp.controller('AppCtrl', ['$scope', '$http', function($scope, $http) {
     console.log("Hello World from controller");
 	
@@ -63,8 +63,16 @@ var myApp = angular.module('myApp', []);
 }]);*/
 
 
-myApp.controller('createCtrl', ['$scope', '$http', function($scope, $http) {
-	
+myApp.controller('createCtrl', ['$scope', '$http', '$stateParams' , function($scope, $http,$stateParams) {
+	var id = $stateParams.id;
+	console.log(id)
+	var editMode = false;
+	if(typeof id === 'undefined'){
+		editMode =false;
+	}
+	else{
+		editMode = true;
+	}
 	var refresh = function(){
 		$http.get('/details').success(function(response){
 		 console.log("I got data required");
@@ -73,7 +81,13 @@ myApp.controller('createCtrl', ['$scope', '$http', function($scope, $http) {
 		 $scope.person = "";
 	 });
 	};
-	 refresh();
+	 
+	 if(editMode == true){
+		 $http.get('/details/'+id).success(function(response){
+			$scope.person = response;
+		});
+	 }
+	 
 	 
 	 $scope.saveDetails = function(){
 		//$scope.hidesave = false;
@@ -98,14 +112,20 @@ myApp.controller('createCtrl', ['$scope', '$http', function($scope, $http) {
 }]);
 
 
-myApp.controller('viewCtrl', ['$scope', '$http', function($scope, $http) {
+myApp.controller('viewCtrl', ['$scope', '$http', '$state','$stateParams', function($scope, $http,$state,$stateParams) {
 	
+	var id = $stateParams.id;
+	console.log(id)
+	$http.get('/details/'+id).success(function(response){
+			$scope.person = response;
+			console.log($scope.person)
+		});
 	var refresh = function(){
 		$http.get('/details').success(function(response){
 		 console.log("I got data required");
 		 $scope.details = response;
 		 console.log("$scope.details: ",$scope.details);
-		 $scope.person = "";
+		 //$scope.person = "";
 	 });
 	};
 	 refresh();
