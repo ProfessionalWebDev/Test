@@ -65,7 +65,7 @@
 
 myApp.controller('createCtrl', ['$scope', '$http', '$stateParams' , function($scope, $http,$stateParams) {
 	var id = $stateParams.id;
-	console.log(id)
+	console.log(id);
 	var editMode = false;
 	if(typeof id === 'undefined'){
 		editMode =false;
@@ -78,7 +78,7 @@ myApp.controller('createCtrl', ['$scope', '$http', '$stateParams' , function($sc
 		 console.log("I got data required");
 		 $scope.details = response;
 		 console.log("$scope.details: ",$scope.details);
-		 $scope.person = "";
+		 //$scope.person = "";
 	 });
 	};
 	 
