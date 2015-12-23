@@ -1,6 +1,6 @@
-//var myApp = angular.module('myApp',[]);
+//var myApp1 = angular.module('ui.bootstrap.demo',['ngAnimate', 'ui.bootstrap']);
 /*myApp.controller('AppCtrl', ['$scope', '$http', function($scope, $http) {
-    console.log("Hello World from controller");
+    /*console.log("Hello World from controller");
 	
 	//$scope.hidesave = false;
 
@@ -179,3 +179,21 @@ myApp.controller('listCtrl', ['$scope', '$http', function($scope, $http) {
 	}
 	
 }]);
+
+//angular.module('ui.bootstrap', ['ngAnimate', 'ui.bootstrap']);
+myApp.controller('CarouselCtrl', function($scope ) {
+  $scope.myInterval = 5000;
+  $scope.noWrapSlides = false;
+  var slides = $scope.slides = [];
+  $scope.addSlide = function() {
+    var newWidth = 600 + slides.length + 1;
+    slides.push({
+      image: '//placekitten.com/' + newWidth + '/300',
+      text: ['More','Extra','Lots of','Surplus'][slides.length % 4] + ' ' +
+        ['Cats', 'Kittys', 'Felines', 'Cutes'][slides.length % 4]
+    });
+  };
+  for (var i=0; i<4; i++) {
+    $scope.addSlide();
+  }
+});
