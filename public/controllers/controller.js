@@ -63,15 +63,15 @@
 }]);*/
 
 
-myApp.controller('createCtrl', ['$scope', '$http', '$stateParams' , function($scope, $http,$stateParams) {
+myApp.controller('createCtrl', ['$scope', '$http', '$state','$stateParams' , function($scope, $http,$state,$stateParams) {
 	var id = $stateParams.id;
 	//console.log(id);
-	var editMode = false;
+	$scope.editMode = false;
 	if(typeof id === 'undefined'){
-		editMode =false;
+		$scope.editMode =false;
 	}
 	else{
-		editMode = true;
+		$scope.editMode = true;
 	}
 	var refresh = function(){
 		$http.get('/details').success(function(response){
@@ -82,7 +82,7 @@ myApp.controller('createCtrl', ['$scope', '$http', '$stateParams' , function($sc
 	 });
 	};
 	 
-	 if(editMode == true){
+	 if($scope.editMode == true){
 		 $http.get('/details/'+id).success(function(response){
 			$scope.person = response;
 		});
@@ -90,6 +90,7 @@ myApp.controller('createCtrl', ['$scope', '$http', '$stateParams' , function($sc
 	 
 	 
 	 $scope.saveDetails = function(){
+		 if($scope.editMode == false){
 		//$scope.hidesave = false;
 		//$scope.person = "";
 		console.log("i am in save")
@@ -98,16 +99,27 @@ myApp.controller('createCtrl', ['$scope', '$http', '$stateParams' , function($sc
 			console.log(response);
 			refresh();
 		})
+		$state.go("itemList");
+	 }
+	 else{
+		 console.log($scope.person)
+		//$scope.hidesave = false;
+		$http.post('/details/'+$scope.person._id, $scope.person).success(function(response){
+			console.log(response);
+			refresh();
+		});
+		$state.go("itemList");
+	 }
 	};
 	
-	$scope.updateDetails = function(){
+	/*$scope.updateDetails = function(){
 		console.log($scope.person)
 		//$scope.hidesave = false;
 		$http.put('/details/'+$scope.person._id, $scope.person).success(function(response){
 			console.log(response);
 			refresh();
 		});
-	};
+	};*/
 	
 }]);
 

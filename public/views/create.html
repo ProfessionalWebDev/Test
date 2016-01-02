@@ -1,4 +1,4 @@
-<form >
+<form ng-submit="saveDetails()">
 		<div class="container well">
 			<div class="row">
 				<label>Name:</label><span>*</span>
@@ -12,8 +12,8 @@
 			
 			<div class="row">
 				<div class="col-xs-4 pull-right">
-					<button type="submit" class="btn btn-primary" ng-click="saveDetails()">Save</button>
-					<button class="btn btn-primary" ng-click="updateDetails()" >Update</button>
+					<button type="submit" class="btn btn-primary" ng-hide="editMode == true">Save</button>
+					<button class="btn btn-primary" type="submit"  ng-show="editMode == true">Update</button>
 				</div>
 			</div>
 		</div>
