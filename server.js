@@ -1,7 +1,7 @@
 var express = require('express');
 var app = express();
 
-//var mongojs = require('mongojs'); Hello
+//var mongojs = require('mongojs'); 
 //var db = mongojs('detailsdb',['detailsCollection']);
 
 var mongoose = require('mongoose');
