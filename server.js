@@ -5,6 +5,7 @@ var app = express();
 //var db = mongojs('detailsdb',['detailsCollection']);
 
 var mongoose = require('mongoose');
+autoIncrement = require('mongoose-auto-increment');
 mongoose.connect('mongodb://localhost/details');
 
 var db = mongoose.connection;
@@ -13,13 +14,14 @@ db.once('open', function() {
   // we're connected!
 });
 
+autoIncrement.initialize(db)
 var detailsSchema = mongoose.Schema({
     name: String,
 	desc: String
 	});
 
 var detailsdb = mongoose.model('detailsdb', detailsSchema);
-
+detailsSchema.plugin(autoIncrement.plugin, 'detailsdb');
 var bodyParser = require('body-parser');
 
 
