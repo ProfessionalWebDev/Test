@@ -5,26 +5,26 @@ myApp.config(function($stateProvider, $urlRouterProvider){
 	$stateProvider
 		.state('home',{
 			url: '/home',
-			templateUrl: '/views/home.html'
+			templateUrl: '/views/Home.html'
 		})
 		.state('itemCreate',{
 			url: '/itemCreate',
-			templateUrl: '/views/create.html',
+			templateUrl: '/views/Create.html',
 			controller: 'createCtrl'
 		})
 		.state('itemEdit',{
 			url: '/itemCreate/:id',
-			templateUrl: '/views/create.html',
+			templateUrl: '/views/Create.html',
 			controller: 'createCtrl'
 		})
 		.state('itemList',{
 			url: '/itemList',
-			templateUrl: '/views/list.html',
+			templateUrl: '/views/List.html',
 			controller: 'listCtrl'
 		})
 		.state('itemDetails',{
 			url: '/itemDetails/:id',
-			templateUrl: '/views/view.html',
+			templateUrl: '/views/View.html',
 			controller: 'viewCtrl'
 		});
 		

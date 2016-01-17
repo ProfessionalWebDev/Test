@@ -1,0 +1,20 @@
+<form ng-submit="saveDetails()">
+  <div class="container well">
+    <div class="row">
+      <label>Name:</label><span>*</span>
+      <input placeholder="Enter Name" class="form-control" ng-model="person.name" required>
+    </div>
+    <div class="row">
+      <label>Description:</label>
+      <textarea placeholder="Enter Description" class="form-control" ng-model="person.desc"></textarea>
+    </div>
+    <br>
+
+    <div class="row">
+      <div class="col-xs-4 pull-right">
+        <button type="submit" class="btn btn-primary" ng-hide="editMode == true">Save</button>
+        <button class="btn btn-primary" type="submit" ng-show="editMode == true">Update</button>
+      </div>
+    </div>
+  </div>
+</form>
