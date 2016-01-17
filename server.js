@@ -14,10 +14,9 @@ db.once('open', function() {
 });
 
 var detailsSchema = mongoose.Schema({
-	_id: {type: Number, default:Math.floor(Math.random() * 90000) + 10000},
     name: String,
 	desc: String
-	},{_id: false});
+	});
 
 var detailsdb = mongoose.model('detailsdb', detailsSchema);
 
